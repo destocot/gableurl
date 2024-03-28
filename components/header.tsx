@@ -19,7 +19,7 @@ export const Header = () => {
         size={{ base: "lg", md: "2xl" }}
         textTransform="uppercase"
       >
-        <Link href="/">ShortyURL</Link>
+        <Link href="/">GableURL</Link>
       </Heading>
 
       <Box as="nav">

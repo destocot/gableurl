@@ -1,7 +1,6 @@
-import { ShortUrlHeading } from "@/components/short-url-heading";
 import dbConnect from "@/lib/dbConnect";
 import Url from "@/models/Url";
-import { Box, Heading, Text, VStack } from "@chakra-ui/react";
+import { Heading, Text, VStack } from "@chakra-ui/react";
 import { notFound } from "next/navigation";
 
 type PreviewProps = {
@@ -20,7 +19,9 @@ export default async function Preview({ params: { hash } }: PreviewProps) {
 
   return (
     <VStack gap={6} mt={16}>
-      <ShortUrlHeading hash={url.hash} />
+      <Heading opacity={0.9}>
+        {process.env.NEXT_URL}/{url.hash}
+      </Heading>
       <Text>Redirects to:</Text>
       <Heading
         as="a"

@@ -38,6 +38,9 @@ export async function createShortUrl(prevState: PrevState, formData: FormData) {
     const result = await Url.create({ url, hash });
     return { success: result.hash };
   } catch (e) {
-    console.log(e);
+    if (e instanceof Error) {
+      console.error("Error: " + e.message);
+    }
+    console.error("Error: Something went wrong.");
   }
 }
