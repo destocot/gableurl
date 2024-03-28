@@ -15,7 +15,7 @@ export async function createShortUrl(prevState: PrevState, formData: FormData) {
   const reset = Boolean(formData.get("reset"));
   if (reset) return { reset: true };
 
-  await new Promise((res) => setTimeout(res, 500));
+  // await new Promise((res) => setTimeout(res, 500));
 
   const parsed = schema.safeParse(formData.get("url"));
 
