@@ -17,8 +17,9 @@ export default async function Preview({ params: { hash } }: PreviewProps) {
   const url = await retrieveUrl(hash);
   if (!url) notFound();
 
+  console.log(process.env.NEXT_URL);
   return (
-    <VStack gap={6} mt={16}>
+    <VStack gap={6} mt={16} px={2}>
       <Heading opacity={0.9}>
         {process.env.NEXT_URL}/{url.hash}
       </Heading>
@@ -29,7 +30,8 @@ export default async function Preview({ params: { hash } }: PreviewProps) {
         href={url.url}
         opacity={0.9}
         _hover={{ opacity: 1 }}
-        maxW="33%"
+        maxW={{ base: "98%", md: "50%" }}
+        isTruncated
       >
         {url.url}
       </Heading>
