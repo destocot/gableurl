@@ -17,7 +17,6 @@ export default async function Preview({ params: { hash } }: PreviewProps) {
   const url = await retrieveUrl(hash);
   if (!url) notFound();
 
-  console.log(process.env.NEXT_URL);
   return (
     <VStack gap={6} mt={16} px={2}>
       <Heading opacity={0.9}>
