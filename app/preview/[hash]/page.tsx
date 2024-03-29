@@ -1,6 +1,7 @@
+import { AutoRedirector } from "@/components/auto-redirector";
 import dbConnect from "@/lib/dbConnect";
 import Url from "@/models/Url";
-import { Heading, Text, VStack } from "@chakra-ui/react";
+import { Box, Button, Heading, Progress, Text, VStack } from "@chakra-ui/react";
 import { notFound } from "next/navigation";
 
 type PreviewProps = {
@@ -19,7 +20,12 @@ export default async function Preview({ params: { hash } }: PreviewProps) {
 
   return (
     <VStack gap={6} mt={16} px={2}>
-      <Heading opacity={0.9}>
+      <Heading
+        opacity={0.9}
+        maxW={{ base: "98%", md: "50%" }}
+        fontSize={{ base: "lg", md: "3xl" }}
+        isTruncated
+      >
         {process.env.NEXT_URL}/{url.hash}
       </Heading>
       <Text>Redirects to:</Text>
@@ -30,10 +36,25 @@ export default async function Preview({ params: { hash } }: PreviewProps) {
         opacity={0.9}
         _hover={{ opacity: 1 }}
         maxW={{ base: "98%", md: "50%" }}
+        fontSize={{ base: "lg", md: "3xl" }}
         isTruncated
       >
         {url.url}
       </Heading>
+      <Box>
+        <Progress size="xs" isIndeterminate w="100%" colorScheme="rose" />
+        <Text>Please wait while you are redirected...</Text>
+      </Box>
+      <Button
+        as="a"
+        variant="link"
+        href={url.url}
+        target="_blank"
+        colorScheme="rose.500"
+      >
+        Click here if you are not automatically redirected.
+      </Button>
+      <AutoRedirector url={url.url} />
     </VStack>
   );
 }

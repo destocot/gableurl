@@ -1,5 +1,6 @@
-import { Box, Button, Flex, Heading } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import Link from "next/link";
+import { UrlStorage } from "./url-storage";
 
 const links = [
   { href: "#", label: "Sign Up" },
@@ -13,20 +14,20 @@ export const Header = () => {
       px={{ base: 2, md: 10 }}
       py={5}
       align="center"
-      mb={5}
+      mb={16}
+      flexDir={{ base: "column", sm: "row" }}
     >
-      <Heading
-        as="h2"
-        size={{ base: "lg", md: "2xl" }}
-        textTransform="uppercase"
-      >
+      <Text as="h2" fontWeight="bold" textTransform="uppercase" fontSize="4xl">
         <Link href="/">GableURL</Link>
-      </Heading>
+      </Text>
 
       <Box as="nav">
         <Flex as="ul">
+          <li>
+            <UrlStorage />
+          </li>
           {links.map(({ href, label }) => (
-            <li key={href}>
+            <li key={label}>
               <Button
                 as={Link}
                 href={href}
