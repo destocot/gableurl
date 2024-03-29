@@ -17,7 +17,12 @@ export async function createShortUrl(prevState: PrevState, formData: FormData) {
 
   // await new Promise((res) => setTimeout(res, 500));
 
-  const parsed = schema.safeParse(formData.get("url"));
+  let input = formData.get("url") as string;
+  if (!input.startsWith("http://") || !input.startsWith("https://")) {
+    input = "http://" + input;
+  }
+
+  const parsed = schema.safeParse(input);
 
   if (!parsed.success) {
     const error = parsed.error.flatten().formErrors[0];
