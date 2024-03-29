@@ -13,6 +13,7 @@ export const Header = () => {
       px={{ base: 2, md: 10 }}
       py={5}
       align="center"
+      mb={5}
     >
       <Heading
         as="h2"
