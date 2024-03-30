@@ -66,7 +66,6 @@ export const Form = () => {
       borderRadius="lg"
       action={formAction}
       w={{ base: "95%", sm: "420px" }}
-      mt={{ base: 16, md: -16 }}
     >
       <FormControl isInvalid={!!state?.error} colorScheme="">
         <FormLabel>

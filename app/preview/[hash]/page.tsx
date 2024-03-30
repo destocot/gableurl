@@ -4,14 +4,11 @@ import Url from "@/models/Url";
 import { Box, Button, Heading, Progress, Text, VStack } from "@chakra-ui/react";
 import { notFound } from "next/navigation";
 
-type PreviewProps = {
-  params: { hash: string };
-};
+type PreviewProps = { params: { hash: string } };
 
 const retrieveUrl = async (hash: string) => {
   await dbConnect();
-  const url = await Url.findOne({ hash });
-  return url;
+  return await Url.findOne({ hash });
 };
 
 export default async function Preview({ params: { hash } }: PreviewProps) {
@@ -37,11 +34,11 @@ export default async function Preview({ params: { hash } }: PreviewProps) {
         _hover={{ opacity: 1 }}
         maxW={{ base: "98%", md: "50%" }}
         fontSize={{ base: "lg", md: "3xl" }}
-        isTruncated
+        noOfLines={2}
       >
         {url.url}
       </Heading>
-      <Box>
+      <Box maxW={{ base: "98%", md: "50%" }}>
         <Progress size="xs" isIndeterminate w="100%" colorScheme="rose" />
         <Text>Please wait while you are redirected...</Text>
       </Box>

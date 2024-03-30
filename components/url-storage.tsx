@@ -1,5 +1,4 @@
 "use client";
-import { GableURL } from "@/lib/types";
 import {
   Drawer,
   DrawerBody,
