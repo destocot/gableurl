@@ -32,10 +32,12 @@ export const Form = () => {
   const shareRef = useRef<HTMLDivElement>(null);
   useOnClickOutside([shareRef], () => setShowShare(false));
 
+  const gableURL = state?.success
+    ? `${process.env.NEXT_PUBLIC_URL}/${state.success}`
+    : "";
+
   const handleCopy = () => {
-    navigator.clipboard.writeText(
-      `${window.location.origin}/${state?.success}`
-    );
+    navigator.clipboard.writeText(gableURL);
     toast.success("Copied to clipboard");
   };
 
@@ -55,10 +57,6 @@ export const Form = () => {
       urlInput.value = "";
     }
   }, [state?.reset]);
-
-  const gableURL = state?.success
-    ? `${window.location.origin}/${state.success}`
-    : "";
 
   return (
     <Box
@@ -81,6 +79,7 @@ export const Form = () => {
           _focusVisible={{ borderColor: "rose.500" }}
           name="url"
           id="url"
+          readOnly={state?.success ? true : false}
         />
         <FormErrorMessage color="warning.500">{state?.error}</FormErrorMessage>
       </FormControl>
@@ -95,7 +94,7 @@ export const Form = () => {
               py={6}
               _focusVisible={{ borderColor: "rose.500" }}
               value={gableURL}
-              readOnly
+              onChange={() => {}}
             />
           </FormControl>
           <HStack mt={4}>

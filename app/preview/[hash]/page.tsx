@@ -26,7 +26,7 @@ export default async function Preview({ params: { hash } }: PreviewProps) {
         fontSize={{ base: "lg", md: "3xl" }}
         isTruncated
       >
-        {process.env.NEXT_URL}/{url.hash}
+        {process.env.NEXT_PUBLIC_URL}/{url.hash}
       </Heading>
       <Text>Redirects to:</Text>
       <Heading

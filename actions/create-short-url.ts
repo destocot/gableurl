@@ -3,7 +3,14 @@ import dbConnect from "@/lib/dbConnect";
 import Url from "@/models/Url";
 import { z } from "zod";
 
-const schema = z.string().url("Invalid URL.");
+const schema = z.string().refine(
+  (input) => {
+    const regex =
+      /^(https?:\/\/)?(www\.)?([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}(\/[a-z0-9_\-\.~]*)?(\?.*)?$/i;
+    return regex.test(input);
+  },
+  { message: "Invalid URL." }
+);
 
 type PrevState =
   | { error: string }
@@ -18,9 +25,6 @@ export async function createShortUrl(prevState: PrevState, formData: FormData) {
   // await new Promise((res) => setTimeout(res, 500));
 
   let input = formData.get("url") as string;
-  if (!input.startsWith("http://") || !input.startsWith("https://")) {
-    input = "http://" + input;
-  }
 
   const parsed = schema.safeParse(input);
 
@@ -29,15 +33,25 @@ export async function createShortUrl(prevState: PrevState, formData: FormData) {
     return { error: error || "Oops, something went wrong" };
   }
 
-  const url = parsed.data;
+  let url = parsed.data;
+  if (!url.startsWith("http://") && !url.startsWith("https://")) {
+    url = "http://" + url;
+  }
 
   try {
     await dbConnect();
-    const exists = await Url.findOne({ url });
+    const normalizedUrl = url.replace(/^https?:\/\//i, "");
+    const urlObject = new URL(`http://${normalizedUrl}`);
+    const domain = urlObject.hostname;
+    const exists = await Url.findOne({
+      $or: [
+        { url: `http://${normalizedUrl}` },
+        { url: `https://${normalizedUrl}` },
+        { url: new RegExp(`^${domain}$`, "i") },
+      ],
+    });
 
-    if (exists) {
-      return { success: exists.hash };
-    }
+    if (exists) return { success: exists.hash };
 
     const hash = Math.random().toString(36).substring(7);
     const result = await Url.create({ url, hash });
@@ -45,7 +59,8 @@ export async function createShortUrl(prevState: PrevState, formData: FormData) {
   } catch (e) {
     if (e instanceof Error) {
       console.error("Error: " + e.message);
+    } else {
+      console.error("Error: Something went wrong.");
     }
-    console.error("Error: Something went wrong.");
   }
 }
