@@ -16,7 +16,7 @@ export default async function Preview({ params: { hash } }: PreviewProps) {
   if (!url) notFound();
 
   return (
-    <VStack gap={6} mt={16} px={2}>
+    <VStack gap={6} px={2}>
       <Heading
         opacity={0.9}
         maxW={{ base: "98%", md: "50%" }}

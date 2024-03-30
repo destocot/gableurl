@@ -11,11 +11,11 @@ export const Header = () => {
   return (
     <Flex
       justify="space-between"
-      px={{ base: 2, md: 10 }}
-      py={5}
+      p={5}
       align="center"
-      mb={16}
-      flexDir={{ base: "column", sm: "row" }}
+      flexDir="column"
+      mb={8}
+      gap={2}
     >
       <Text as="h2" fontWeight="bold" textTransform="uppercase" fontSize="4xl">
         <Link href="/">GableURL</Link>
