@@ -27,7 +27,7 @@ export const CreateShortURLForm = () => {
     e.preventDefault();
     setLoading(true);
     setError("");
-    await new Promise((r) => setTimeout(r, 1000));
+    // await new Promise((r) => setTimeout(r, 1000));
     const { data, error } = await createShortUrl(input, token);
 
     if (error) setError(error);
