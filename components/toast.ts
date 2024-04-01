@@ -7,7 +7,18 @@ export const success = (message: string) => {
     title: "Success",
     description: message,
     status: "success",
-    duration: 1000,
+    duration: 2000,
+    isClosable: true,
+    position: "top-right",
+  });
+};
+
+export const info = (message: string) => {
+  return toast({
+    title: "Info",
+    description: message,
+    status: "info",
+    duration: 2000,
     isClosable: true,
     position: "top-right",
   });

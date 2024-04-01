@@ -16,7 +16,7 @@ const UrlSchema = new mongoose.Schema<TUrl>(
       required: true,
     },
   },
-  { versionKey: false }
+  { timestamps: true, versionKey: false }
 );
 
 export default mongoose.models.Url || mongoose.model<TUrl>("Url", UrlSchema);

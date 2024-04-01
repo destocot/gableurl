@@ -12,6 +12,7 @@ import { LinkIcon } from "@chakra-ui/icons";
 import { useRef, useState } from "react";
 import { Summary } from "./summary";
 import ReCAPTCHA from "react-google-recaptcha";
+import * as toast from "@/components/toast";
 
 export const CreateShortURLForm = () => {
   const [input, setInput] = useState("");
@@ -31,7 +32,10 @@ export const CreateShortURLForm = () => {
     const { data, error } = await createShortUrl(input, token);
 
     if (error) setError(error);
-    if (data) setHash(data);
+    if (data) {
+      toast.info("Short URL created! It will expire in 14 days.");
+      setHash(data);
+    }
 
     ref?.current?.reset();
     setLoading(false);

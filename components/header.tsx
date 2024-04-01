@@ -17,8 +17,18 @@ export const Header = () => {
       my={4}
       gap={2}
     >
-      <Text as="h2" fontWeight="bold" textTransform="uppercase" fontSize="5xl">
+      <Text
+        as="h2"
+        fontWeight="bold"
+        textTransform="uppercase"
+        fontSize="5xl"
+        lineHeight="none"
+      >
         <Link href="/">GableURL</Link>
+        <Flex flexDir="column" rowGap={1}>
+          <Box w="90%" h={1} bg="white" borderRadius="2xl" />
+          <Box w="90%" h={1} bg="white" borderRadius="2xl" ml="auto" />
+        </Flex>
       </Text>
 
       {/* <Box as="nav">
