@@ -12,7 +12,21 @@ type SocialsProps = {
   gableURL: string;
 };
 
+// const TEST = "https://gableurl.vercel.app/preview/scrary1";
+
 export const Socials = ({ gableURL }: SocialsProps) => {
+  const FacebookURL = `https://www.facebook.com/sharer/sharer.php?u=${gableURL}&title=Share GableURL on Facebook&description=&quote=&hashtag=
+  `;
+
+  const TwitterURL = `https://twitter.com/intent/post?text=Share GableURL on Twitter&url=${gableURL}
+  `;
+
+  const WhatsappURL = `https://api.whatsapp.com/send?text=Share GableURL on WhatsApp%0D%0A${gableURL}%0D%0A`;
+
+  const LinkedinURL = `https://www.linkedin.com/sharing/share-offsite/?url=${gableURL}`;
+
+  const EmailURL = `mailto:?subject=Share GableURL on Email&body=${gableURL}`;
+
   return (
     <VStack align="stretch" color="rose.500" px={1} gap={1}>
       <Flex align="center" gap={2}>
@@ -26,11 +40,7 @@ export const Socials = ({ gableURL }: SocialsProps) => {
         gap={2}
         cursor="pointer"
         onClick={() => {
-          window.open(
-            `https://www.facebook.com/sharer/sharer.php?u=${gableURL}`,
-            "Share to Facebook",
-            "width=600,height=400"
-          );
+          window.open(FacebookURL, "Share to Facebook", "width=600,height=400");
         }}
       >
         <Button colorScheme="rose" _hover={{ bg: "rose" }} size="sm">
@@ -43,11 +53,7 @@ export const Socials = ({ gableURL }: SocialsProps) => {
         gap={2}
         cursor="pointer"
         onClick={() => {
-          window.open(
-            `https://www.twitter.com/intent/post?text=${gableURL}`,
-            "Share to Twitter",
-            "width=600,height=400"
-          );
+          window.open(TwitterURL, "Share to Twitter", "width=600,height=400");
         }}
       >
         <Button colorScheme="rose" size="sm" _hover={{ bg: "rose" }}>
@@ -60,11 +66,7 @@ export const Socials = ({ gableURL }: SocialsProps) => {
         gap={2}
         cursor="pointer"
         onClick={() => {
-          window.open(
-            `https://api.whatsapp.com/send?text=${gableURL}`,
-            "Share to WhatsApp",
-            "width=600,height=400"
-          );
+          window.open(WhatsappURL, "Share to WhatsApp", "width=600,height=400");
         }}
       >
         <Button size="sm" colorScheme="rose" _hover={{ bg: "rose" }}>
@@ -77,11 +79,7 @@ export const Socials = ({ gableURL }: SocialsProps) => {
         gap={2}
         cursor="pointer"
         onClick={() => {
-          window.open(
-            `https://www.linkedin.com/shareArticle?mini=true&url=${gableURL}`,
-            "Share to LinkedIn",
-            "width=600,height=400"
-          );
+          window.open(LinkedinURL, "Share to LinkedIn", "width=600,height=400");
         }}
       >
         <Button size="sm" colorScheme="rose" _hover={{ bg: "rose" }}>
@@ -94,11 +92,7 @@ export const Socials = ({ gableURL }: SocialsProps) => {
         gap={2}
         cursor="pointer"
         onClick={() => {
-          window.open(
-            `mailto:?subject=Check out this link&body=${gableURL}`,
-            "Share to Email",
-            "width=600,height=400"
-          );
+          window.open(EmailURL, "Share to Email", "width=600,height=400");
         }}
       >
         <Button size="sm" colorScheme="rose" _hover={{ bg: "rose" }}>

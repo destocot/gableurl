@@ -1,4 +1,4 @@
-import { Form as CreateShortURLForm } from "@/components/create-short-url";
+import { CreateShortURLForm } from "@/components/form";
 import { Box } from "@chakra-ui/react";
 
 export default function Home() {

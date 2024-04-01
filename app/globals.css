@@ -13,7 +13,7 @@
   padding: 8px;
   border-radius: 4px;
   position: absolute;
-  top: -245px;
+  bottom: -245px;
   z-index: 2;
   right: 50%;
   transform: translateX(50%);
@@ -22,17 +22,24 @@
 .tail::after {
   content: "";
   position: absolute;
-  bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
   border-style: solid;
-  border-width: 10px 7px 0;
 }
 
 .qr-container::after {
   border-color: #f43f5e transparent transparent;
+  border-width: 10px 7px 0;
+  bottom: -10px;
 }
 
 .socials-container::after {
-  border-color: #ffffff transparent transparent;
+  border-color: transparent transparent #ffffff;
+  top: -10px;
+  border-width: 0 7px 10px;
+}
+
+#rc-anchor-container {
+  transform: scale(0.77);
+  transform-origin: 0 0;
 }

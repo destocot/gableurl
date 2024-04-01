@@ -14,14 +14,14 @@ export const Header = () => {
       p={5}
       align="center"
       flexDir="column"
-      mb={8}
+      my={4}
       gap={2}
     >
-      <Text as="h2" fontWeight="bold" textTransform="uppercase" fontSize="4xl">
+      <Text as="h2" fontWeight="bold" textTransform="uppercase" fontSize="5xl">
         <Link href="/">GableURL</Link>
       </Text>
 
-      <Box as="nav">
+      {/* <Box as="nav">
         <Flex as="ul">
           <li>
             <UrlStorage />
@@ -42,7 +42,7 @@ export const Header = () => {
             </li>
           ))}
         </Flex>
-      </Box>
+      </Box> */}
     </Flex>
   );
 };
