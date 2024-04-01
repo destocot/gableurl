@@ -38,8 +38,3 @@
   top: -10px;
   border-width: 0 7px 10px;
 }
-
-#rc-anchor-container {
-  transform: scale(0.77);
-  transform-origin: 0 0;
-}

@@ -94,7 +94,16 @@ export const CreateShortURLForm = () => {
             Shorten URL
           </Button>
         </>
-      )}
+      )}{" "}
+      <ReCAPTCHA
+        style={{ display: "inline-block", marginTop: "1rem" }}
+        theme="dark"
+        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+        onChange={(token) => {
+          setToken(token);
+        }}
+        ref={ref}
+      />
     </Box>
   );
 };
